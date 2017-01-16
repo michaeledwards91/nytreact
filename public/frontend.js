@@ -29,7 +29,7 @@ $(document).ready(function() {
 		  	let newLi = $("<li></li>");
 		  	newLi.addClass("list-group-item");
 		  	let lihtml = result.response.docs[i].headline.main;
-		  	lihtml += "<button class='btn btn-default saveArticleBtn' data-date="+result.response.docs[i].pub_date+" data-url="+result.response.docs[i].web_url+"> Save</button>";
+		  	lihtml += "<button class='btn btn-default saveArticleBtn' data-title='"+lihtml+"' data-date="+result.response.docs[i].pub_date+" data-url="+result.response.docs[i].web_url+"> Save</button>";
 		  	console.log(lihtml);
 		  	newLi.html(lihtml);
 
@@ -41,7 +41,9 @@ $(document).ready(function() {
 		  throw err;
 		});
 
-	});
+	}); //end of search submit button
+
+	
 
 
 
