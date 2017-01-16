@@ -35,17 +35,32 @@ db.once("open", function() {
 // -------------------------------------------------
 
 // We will call this route the moment our page gets rendered
-app.get("/api", function(req, res) {
-  console.log("adslkfajodsfija");
+app.get("/api/saved", function(req, res) {
+	Article.find({}, function(err, data) {
+		if (err) throw err;
+
+		res.json(data);
+	});
 });
 
 // This is the route we will send POST requests to save each click.
 // We will call this route the moment the "click" or "reset" button is pressed.
-app.post("/api", function(req, res) {
-  console.log("adkfjaoidjf");
+app.post("/api/saved", function(req, res) {
+	console.log(req.body);
+
+	let entry = new Article({
+		title: req.body.title,
+		date: req.body.date,
+		url: req.body.url
+	});
+	entry.save(function(err) {
+		if (err) throw err;
+		console.log("successfully saved?");
+	});
+	
 });
 
-app.delete("/api", function(req, res) {
+app.delete("/api/saved", function(req, res) {
 	console.log("aoidsfjaposidjfa");
 });
 

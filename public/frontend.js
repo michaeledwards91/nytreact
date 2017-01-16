@@ -1,9 +1,46 @@
 $(document).ready(function() {
 
+	//On document load, populate saved section with articles from /api/saved
+	$.getJSON("/api/saved", function(data) {
+		console.log(data);
+
+		for (var i = 0; i < data.length; i++) {
+
+			let newLi = $("<li></li>");
+			newLi.addClass("list-group-item");
+			let lihtml = "<p>"+data[i].title+"</p>";
+			lihtml += "<p>Date published: "+data[i].date+"</p>";
+			lihtml += "<button class='btn btn-default unsaveBtn' data-id="+data[i]._id+">Unsave</button>";
+			newLi.html(lihtml);
+			newLi.appendTo("#savedList");
+
+		}
+	});
+
+	$(document).on("click", "#savedRouteBtn", function() {
+		$.getJSON("/api/saved", function(data) {
+			console.log(data);
+
+			for (var i = 0; i < data.length; i++) {
+
+				let newLi = $("<li></li>");
+				newLi.addClass("list-group-item");
+				let lihtml = "<p>"+data[i].title+"</p>";
+				lihtml += "<p>Date published: "+data[i].date+"</p>";
+				lihtml += "<button class='btn btn-default unsaveBtn' data-id="+data[i]._id+">Unsave</button>";
+				newLi.html(lihtml);
+				newLi.appendTo("#savedList");
+
+			}
+		});
+	});
+
 	$(document).on("click", "#searchSubmitBtn", function() {
 		let topic = $("#topicInput").val().trim();
 		let startYear = $("#startYearInput").val().trim();
+		startYear += "0101";
 		let endYear = $("#endYearInput").val().trim();
+		endYear += "1231";
 
 		console.log("topic: " + topic);
 		console.log("start year: " + startYear);
@@ -43,7 +80,20 @@ $(document).ready(function() {
 
 	}); //end of search submit button
 
-	
+	$(document).on("click", ".saveArticleBtn", function() {
+
+		console.log("clicked save article button");
+		$.post("/api/saved", {
+			title: $(this).attr("data-title"),
+			date: $(this).attr("data-date"),
+			url: $(this).attr("data-url")
+		})
+		.done(function(data) {
+			console.log("posted data? : " + data);
+		});
+
+
+	});
 
 
 

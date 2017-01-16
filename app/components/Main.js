@@ -14,7 +14,7 @@ var Main = React.createClass({
 						<h1>New York Times Article Scrubber</h1>
 						<p>Search for and annotate articles of interest</p>
 						<a href="#/search"><button className="btn btn-default">Search</button></a>
-            			<a href="#/saved"><button className="btn btn-default">Saved</button></a>
+            			<a href="#/saved"><button className="btn btn-default" id="savedRouteBtn">Saved</button></a>
 					</div>
 				</div>
 

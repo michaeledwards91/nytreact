@@ -12,8 +12,10 @@ var Saved = React.createClass({
 					<h3 className="panel-title">Saved</h3>
 				</div>
 
-				<div className="panel-body" id="savedPanel">
+				<div className="panel-body">
+					<ul className="list-group" id="savedList">
 
+					</ul>
 				</div>
 
 				
