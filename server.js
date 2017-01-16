@@ -4,7 +4,7 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 
 // Require Click schema
-var History = require("./models/History");
+var Article = require("./models/Article");
 // Create a new express app
 var app = express();
 // Sets an initial port. We'll use this later in our listener
@@ -21,7 +21,7 @@ app.use(express.static("./public"));
 // -------------------------------------------------
 
 // MongoDB configuration (Change this URL to your own DB)
-mongoose.connect("mongodb://localhost/addressfinder");
+mongoose.connect("mongodb://localhost/nytreact");
 var db = mongoose.connection;
 
 db.on("error", function(err) {
@@ -34,11 +34,6 @@ db.once("open", function() {
 
 // -------------------------------------------------
 
-// Main "/" Route. This will redirect the user to our rendered React application
-app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/public/index.html");
-});
-
 // We will call this route the moment our page gets rendered
 app.get("/api", function(req, res) {
   console.log("adslkfajodsfija");
@@ -48,6 +43,15 @@ app.get("/api", function(req, res) {
 // We will call this route the moment the "click" or "reset" button is pressed.
 app.post("/api", function(req, res) {
   console.log("adkfjaoidjf");
+});
+
+app.delete("/api", function(req, res) {
+	console.log("aoidsfjaposidjfa");
+});
+
+// Main "/" Route. This will redirect the user to our rendered React application
+app.get("/", function(req, res) {
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 // -------------------------------------------------
