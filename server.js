@@ -34,6 +34,11 @@ db.once("open", function() {
 
 // -------------------------------------------------
 
+// Main "/" Route. This will redirect the user to our rendered React application
+app.get("/", function(req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
+
 // We will call this route the moment our page gets rendered
 app.get("/api/saved", function(req, res) {
 	Article.find({}, function(err, data) {
@@ -57,17 +62,18 @@ app.post("/api/saved", function(req, res) {
 		if (err) throw err;
 		console.log("successfully saved?");
 	});
-	
+
 });
 
 app.delete("/api/saved", function(req, res) {
-	console.log("aoidsfjaposidjfa");
+	console.log(req.body);
+
+	Article.remove({_id: req.body._id}, function(err) {
+		if (err) throw err;
+		console.log("Successfully removed?");
+	});
 });
 
-// Main "/" Route. This will redirect the user to our rendered React application
-app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/public/index.html");
-});
 
 // -------------------------------------------------
 

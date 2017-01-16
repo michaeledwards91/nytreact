@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 			let newLi = $("<li></li>");
 			newLi.addClass("list-group-item");
-			let lihtml = "<p>"+data[i].title+"</p>";
+			let lihtml = "<p><a href="+data[i].url+">"+data[i].title+"</a></p>";
 			lihtml += "<p>Date published: "+data[i].date+"</p>";
 			lihtml += "<button class='btn btn-default unsaveBtn' data-id="+data[i]._id+">Unsave</button>";
 			newLi.html(lihtml);
@@ -65,8 +65,8 @@ $(document).ready(function() {
 
 		  	let newLi = $("<li></li>");
 		  	newLi.addClass("list-group-item");
-		  	let lihtml = result.response.docs[i].headline.main;
-		  	lihtml += "<button class='btn btn-default saveArticleBtn' data-title='"+lihtml+"' data-date="+result.response.docs[i].pub_date+" data-url="+result.response.docs[i].web_url+"> Save</button>";
+		  	let lihtml = "<a href='"+result.response.docs[i].web_url+"'>"+result.response.docs[i].headline.main+"</a>";
+		  	lihtml += "<button class='btn btn-default saveArticleBtn' data-title='"+result.response.docs[i].headline.main+"' data-date="+result.response.docs[i].pub_date+" data-url="+result.response.docs[i].web_url+"> Save</button>";
 		  	console.log(lihtml);
 		  	newLi.html(lihtml);
 
@@ -92,10 +92,22 @@ $(document).ready(function() {
 			console.log("posted data? : " + data);
 		});
 
-
 	});
 
+	$(document).on("click", ".unsaveBtn", function() {
 
+		let articleid = $(this).attr("data-id");
+
+		$.ajax({
+			url: "/api/saved",
+			method: "DELETE",
+			data: {_id: articleid}
+		})
+		.done(function(data) {
+			console.log(data);
+		});
+
+	});
 
 
 
