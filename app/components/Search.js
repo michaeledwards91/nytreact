@@ -21,12 +21,14 @@ var Search = React.createClass({
 						</div>
 
 						<div className="input-group">
-						  	<input type="text" className="form-control" placeholder="Start Year" aria-describedby="basic-addon1" id="startYearInput"></input>
+						  	<input type="text" className="form-control" placeholder="Start Date (YYYYMMDD)" aria-describedby="basic-addon1" id="startYearInput"></input>
 						</div>
 
 						<div className="input-group">
-						  	<input type="text" className="form-control" placeholder="End Year" aria-describedby="basic-addon1" id="endYearInput"></input>
+						  	<input type="text" className="form-control" placeholder="End Date(YYYYMMDD)" aria-describedby="basic-addon1" id="endYearInput"></input>
 						</div>
+
+						<button className="btn btn-default" id="searchSubmitBtn">Submit</button>
 				    	
 					</div>
 				</div>
@@ -37,7 +39,10 @@ var Search = React.createClass({
 						<h3 className="panel-title">Results</h3>
 					</div>
 
-					<div className="panel-body" id="resultsPanel">
+					<div className="panel-body">
+						<ul className="list-group" id="resultsList">
+						
+						</ul>
 
 					</div>
 
