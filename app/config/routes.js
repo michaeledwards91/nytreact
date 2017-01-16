@@ -20,8 +20,8 @@ var IndexRoute = router.IndexRoute;
 
 // Reference the high-level components
 var Main = require("../components/Main");
-var Info = require("../components/Saved");
-var Chat = require("../components/Search");
+var Saved = require("../components/Saved");
+var Search = require("../components/Search");
 
 
 // Export the Routes
@@ -34,9 +34,11 @@ module.exports = (
       {/* If user selects Info or Chat show the appropriate component */}
       {/*<Route path="info" component={Info} />
       <Route path="chat" component={Chat} />*/}
+      
+      <Route path="search" component={Search} />
 
       {/* If user selects any other path... we get the Info Route */}
-      <IndexRoute component={Main} />
+      <IndexRoute component={Search} />
 
     </Route>
   </Router>
